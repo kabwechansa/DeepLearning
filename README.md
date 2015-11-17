@@ -44,10 +44,9 @@
 
 
 ### Other projects : 
-  -  My deep learning projects are [here](http://yusugomori.com/projects/deep-learning/).
+  -  My deep learning project that uses TensorFlow [here](https://github.com/kabwechansa/TensorFlow/).
 　  
 　  
   
-##### Bug reports / contributions / donations are deeply welcome.
-Bitcoin wallet address: 1QAoYw5Y3opvah2APf4jVcpD6UAHyC3k7s
+##### Bug reports / contributions
 
