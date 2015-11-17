@@ -81,9 +81,11 @@ class DBN(object):
             
             for epoch in xrange(epochs):
                 rbm.contrastive_divergence(lr=lr, k=k, input=layer_input)
-                # cost = rbm.get_reconstruction_cross_entropy()
-                # print >> sys.stderr, \
-                #        'Pre-training layer %d, epoch %d, cost ' %(i, epoch), cost
+                # log pretraining as stderr every after 100 epochs
+                if (epoch+1)%100 == 0: # REMOVE this block for faster training
+                    cost = rbm.get_reconstruction_cross_entropy()
+                    print >> sys.stderr, \
+                           'Pre-training layer %d, epoch %d, cost ' %(i, epoch+1), cost
 
 
     def finetune(self, lr=0.1, epochs=100):
@@ -94,8 +96,10 @@ class DBN(object):
         done_looping = False
         while (epoch < epochs) and (not done_looping):
             self.log_layer.train(lr=lr, input=layer_input)
-            # self.finetune_cost = self.log_layer.negative_log_likelihood()
-            # print >> sys.stderr, 'Training epoch %d, cost is ' % epoch, self.finetune_cost
+            # log finetune training as stderr every 25 epochs
+            if (epoch+1)%25 == 0: # REMOVE this block for faster training
+                self.finetune_cost = self.log_layer.negative_log_likelihood()
+                print >> sys.stderr, 'Training epoch %d, cost is ' % (epoch+1), self.finetune_cost
             
             lr *= 0.95
             epoch += 1
