@@ -99,6 +99,12 @@ class RBM(object):
 
         return [v1_mean, v1_sample,
                 h1_mean, h1_sample]
+
+    def gibbs_vhv(self, v0_sample):
+        h1_mean, h1_sample = self.sample_h_given_v(v0_sample)
+        v1_mean, v1_sample = self.sample_v_given_h(h1_sample)
+
+        return [h1_mean, h1_sample, v1_mean, v1_sample]
     
 
     def get_reconstruction_cross_entropy(self):
